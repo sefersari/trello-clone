@@ -8785,7 +8785,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_7__.default({
               return _vuex_config__WEBPACK_IMPORTED_MODULE_5__.default.dispatch('fetchCurrentUser');
 
             case 2:
-              _vuex_config__WEBPACK_IMPORTED_MODULE_5__.default.dispatch('setLoggedIn', localStorage.getItem('isLoggedIn') === 'true ' || false);
+              _vuex_config__WEBPACK_IMPORTED_MODULE_5__.default.dispatch('setLoggedIn', localStorage.getItem('isLoggedIn') === 'true' || false);
 
             case 3:
             case "end":

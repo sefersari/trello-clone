@@ -23,6 +23,6 @@ const app = new Vue({
     store,
     async beforeCreate() {
         await store.dispatch('fetchCurrentUser');
-        store.dispatch('setLoggedIn', localStorage.getItem('isLoggedIn') === 'true ' || false);
+        store.dispatch('setLoggedIn', localStorage.getItem('isLoggedIn') === 'true' || false);
     },
 });
