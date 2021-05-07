@@ -1,0 +1,7 @@
+mutation($id:ID!){
+    cardDelete(id: $id){
+        id
+        title
+        order
+    }
+}
