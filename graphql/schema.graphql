@@ -23,6 +23,9 @@ type Mutation {
 
     boardAdd(title: String!,color: String!):Board! @create
 
+    listAdd(title: String!,board_id: ID!):CardList! @create
+    listDelete(id: ID!):CardList! @delete
+
     login(email: String!, password: String!): User!
     logout: User @guard
     register(

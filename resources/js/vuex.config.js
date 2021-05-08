@@ -11,6 +11,7 @@ const store = {
     state:{
         isLoggedIn: false,
         isLoading: false,
+        boardColor: 'fix',
         user:{
             id: null,
             name: null,
@@ -23,6 +24,9 @@ const store = {
         },
         setLoading(state, payload){
             state.isLoading = Boolean(payload);
+        },
+        setBoardColor(state, payload){
+            state.boardColor = payload;
         },
         setUser(state,payload){
             state.user = payload;
@@ -43,6 +47,7 @@ const store = {
             dispatch('setLoggedIn',false);
         },
         async fetchCurrentUser({commit,dispatch}){
+            commit('setLoading',true);
             const result =  await apollo.defaultClient.query({
                 query: MeQuery,
                 fetchPolicy: "no-cache"
@@ -56,6 +61,8 @@ const store = {
             }else{
                 dispatch('logout');
             }
+
+            commit('setLoading',false);
 
         }
     }

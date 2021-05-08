@@ -4,8 +4,10 @@
              class="bg-white group card shadow-card rounded-sm p-2 cursor-pointer text-sm hover:bg-gray-200 hover:text-gray-600 mb-2 flex justify-between">
             <div>{{ card.title }}</div>
             <div class="flex font-bold opacity-0 group-hover:opacity-100 transition-opacity ease-out duration-500" v-if="card.owner.id === userId">
-                <div class="text-gray-500 pr-2 hover:text-yellow-700" @click="editing = true" >E</div>
-                <div class="text-gray-500 hover:text-red-700" @click="cardDelete">D</div>
+                <div class="text-gray-500 pr-2 hover:text-yellow-700" @click="editing = true" >
+                    <v-icon name="edit"></v-icon>
+                </div>
+                <div class="text-gray-500 hover:text-red-700" @click="cardDelete"><v-icon name="x"></v-icon></div>
             </div>
 
         </div>
@@ -32,7 +34,7 @@ export default {
     data() {
         return {
             editing: false,
-            title: this.card.title
+            title: this.card.title,
         }
     },
     components: {CardEditor},
@@ -92,4 +94,7 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+</style>
 
