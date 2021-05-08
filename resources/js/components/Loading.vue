@@ -1,5 +1,6 @@
 <template>
-    <vue-element-loading :active="isLoading" :is-full-screen="true" spinner="spinner" text="Lütfen Bekleyiniz..." :textStyle="style" size="50" color="#805ad5"/>
+    <vue-element-loading :active="isLoading" :is-full-screen="true" spinner="spinner" text="Lütfen Bekleyiniz..."
+                         :style="style" :textStyle="textStyle" size="50" color="#805ad5"/>
 </template>
 
 <script>
@@ -9,11 +10,13 @@ import VueElementLoading from 'vue-element-loading'
 
 export default {
     name: "Loading",
-    data(){
-        return{
-          style:{
-              marginLeft:'-35px'
-          }
+    data() {
+        return {
+            textStyle: {
+                marginLeft: '-35px',
+            },
+            style: {
+            }
         }
     },
     components: {

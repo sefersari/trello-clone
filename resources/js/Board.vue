@@ -5,7 +5,7 @@
         <div class="header text-white flex justify-between items-center mb-2">
             <div class="ml-2 w-1/3">
 
-                <UserBoardsDropdown></UserBoardsDropdown>
+                <UserBoardsDropdown v-if="isLoggedIn"></UserBoardsDropdown>
             </div>
             <div class="text-lg opacity-50 cursor-pointer hover:opacity-75">Trello Clone</div>
             <div class="mr-4 w-1/3 flex justify-end">
@@ -101,6 +101,7 @@ export default {
             if (response.data?.logout?.id) {
                 this.$store.dispatch('logout');
                 this.$store.commit('setLoading', false);
+                this.$router.push({name: 'login'});
             }
 
         },
@@ -138,7 +139,7 @@ export default {
             }
 
             this.$store.commit('setLoading', false);
-            event.store.writeQuery({query: BoardQuery, data});
+            event.store.writeQuery({query: BoardQuery, data,variables: {id: Number(this.$route.params.id)}});
         },
         loadingUpdate() {
             this.loading = !this.loading;

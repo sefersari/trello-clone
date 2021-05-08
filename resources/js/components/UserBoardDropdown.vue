@@ -1,21 +1,25 @@
-<script src="../../../../../Downloads/107-user-boards-dropdown.js"></script>
 <template>
     <div>
         <button class="header-btn" @click="showBoards= !showBoards">Boards</button>
-        <DropDownMenu :show="showBoards">
-            <div class="text-gray-600 text-xs font-semibold mb-2 ml-2">BOARDS</div>
+        <DropDownMenu :show="showBoards" @closed="showBoards = false">
+            <div class="text-gray-600 text-xs font-semibold mb-2 ml-1">BOARDS</div>
             <router-link
                 :to="{name:'board',params:{id:board.id}}"
                 v-for="board in userBoards"
                 :key="board.id"
-                :class="[`bg-${board.color}-100`]"
-                class="m-2 rounded-sm opacity-100 hover:opacity-75 text-gray-600 font-bold cursor-pointer flex"
+                :class="[colorMap100[board.color]]"
+                class="rounded-sm opacity-100 hover:opacity-75 text-gray-600 font-bold cursor-pointer flex mb-2"
+                @click.native="showBoards = false"
             >
 
-                <div :class="[`bg-${board.color}-200`]" class="w-10 rounded-sm rounded-r-none "></div>
+                <div :class="[colorMap200[board.color]]" class="w-10 rounded-sm rounded-r-none "></div>
                 <div class="p-2"> {{ board.title }}</div>
 
             </router-link>
+            <div class="rounded-sm hover:bg-gray-300 p-2 underline cursor-pointer mt-4" @click="showModal = true">Create new board...</div>
+
+            <BoardAddModal :show="showModal" @closed="showModal = false"></BoardAddModal>
+
         </DropDownMenu>
     </div>
 </template>
@@ -25,10 +29,11 @@ import DropDownMenu from "./DropDownMenu";
 import {mapState} from 'vuex';
 import UserBoards from '../graphql/UserBorads.graphql';
 import {colorMap100, colorMap200} from '../utils';
+import BoardAddModal from './BoardAddModal';
 
 export default {
     name: "UserBoardDropdown",
-    components: {DropDownMenu},
+    components: {DropDownMenu,BoardAddModal},
     apollo: {
         userBoards: {
             query: UserBoards,
@@ -44,7 +49,8 @@ export default {
     },
     data() {
         return {
-            showBoards: false
+            showBoards: false,
+            showModal:false
         }
     },
     computed: {
