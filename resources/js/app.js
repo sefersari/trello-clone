@@ -24,5 +24,8 @@ const app = new Vue({
     async beforeCreate() {
         await store.dispatch('fetchCurrentUser');
         store.dispatch('setLoggedIn', localStorage.getItem('isLoggedIn') === 'true' || false);
+        if(localStorage.getItem('isLoggedIn') !== 'true'){
+            router.push({name:'login'});
+        }
     },
 });

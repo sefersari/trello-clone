@@ -1,0 +1,7 @@
+mutation BoardCrete($title: String!,$color: String!){
+    boardAdd(title: $title,color:$color){
+        id,
+        title,
+        color
+    }
+}
