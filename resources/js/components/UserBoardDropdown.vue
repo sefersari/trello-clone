@@ -18,7 +18,7 @@
             </router-link>
             <div class="rounded-sm hover:bg-gray-300 p-2 underline cursor-pointer mt-4" @click="showModal = true">Create new board...</div>
 
-            <BoardAddModal :show="showModal" @closed="showModal = false"></BoardAddModal>
+            <BoardAddModal :show="showModal" @closed="showModal = false,showBoards = false"></BoardAddModal>
 
         </DropDownMenu>
     </div>

@@ -4,7 +4,7 @@ import Board from "./Board";
 import apolloProvider from './apollo.config';
 import router from './router.config';
 import store from './vuex.config';
-
+import feather from 'vue-icon'
 
 //Optional component
 import Notifications from 'vue-notification'
@@ -12,6 +12,7 @@ import Notifications from 'vue-notification'
 window.Vue = Vue;
 
 Vue.use(Notifications);
+Vue.use(feather,'v-icon');
 
 Vue.component('Board', Board);
 
@@ -24,7 +25,7 @@ const app = new Vue({
     async beforeCreate() {
         await store.dispatch('fetchCurrentUser');
         store.dispatch('setLoggedIn', localStorage.getItem('isLoggedIn') === 'true' || false);
-        if(localStorage.getItem('isLoggedIn') !== 'true'){
+        if(localStorage.getItem('isLoggedIn') !== 'true' && router.currentRoute.name !== 'login'){
             router.push({name:'login'});
         }
     },

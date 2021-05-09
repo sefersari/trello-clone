@@ -25,3 +25,16 @@
     opacity:0;
     transform: translateY(30px);
 }
+
+.list{
+    min-width: 230px;
+    width: 230px;
+}
+
+.icon{
+    color: #6b6a6a;
+    height: 18px;
+}
+.icon:hover{
+    color: #353535;
+}

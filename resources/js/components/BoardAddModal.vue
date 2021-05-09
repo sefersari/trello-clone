@@ -95,7 +95,7 @@ export default {
         colorGrid: () => colorGrid,
         cannotCreate() {
             return this.title == null || this.title.length == 0;
-        }
+        },
     },
 
 }

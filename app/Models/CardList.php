@@ -23,4 +23,13 @@ class CardList extends Model
         return $this->belongsTo(Board::class,'board_id');
     }
 
+    protected static function booted()
+    {
+        self::deleting(function(CardList $cardList){
+            $cardList->cards->each(function (Card $card){
+                $card->delete();
+            });
+        });
+    }
+
 }

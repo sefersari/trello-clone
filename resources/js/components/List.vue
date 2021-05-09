@@ -4,6 +4,12 @@
             <div class="text-gray-800 pl-2 pb-2 font-bold">
                 {{ list.title }}
             </div>
+
+            <div @click="deleteList(list.id)">
+                <v-icon class="cursor-pointer" name="x" style="height: 20px"></v-icon>
+            </div>
+
+
         </div>
         <card
             v-for="card in list.cards" :card="card"
@@ -27,6 +33,8 @@ import Card from "./Card";
 import CardAddButton from "./CardAddButton";
 import CardAddEditor from "./CardAddEditor";
 import {mapState} from 'vuex';
+import ListDelete from '../graphql/ListDelete.graphql';
+import {EVENT_LIST_DELETED} from "../constants";
 
 export default {
     components: {
@@ -45,6 +53,21 @@ export default {
     data() {
         return {
             editing: false
+        }
+    },
+    methods:{
+        deleteList(listId){
+            const self = this;
+            this.$store.commit('setLoading',true);
+            this.$apollo.mutate({
+                mutation: ListDelete,
+                variables:{
+                    id: listId
+                },
+                update(store, {data:{ listDelete }}){
+                    self.$emit('list-deleted',{store,data:listDelete,type: EVENT_LIST_DELETED});
+                }
+            });
         }
     },
     name: "List"

@@ -91,7 +91,7 @@ export default {
                     this.$store.dispatch('setLoggedIn',true);
                     this.$store.commit('setLoading',true);
                     this.$store.commit('setUser',user);
-                    this.$router.push({name: "board"});
+                    this.$router.push({name: 'home'});
                 }
             }catch (err){
                 this.errors = gqlErrors(err);
