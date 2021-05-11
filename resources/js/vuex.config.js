@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from 'vuex';
 import apollo from './apollo.config';
 import MeQuery from './graphql/Me.graphql';
+import Router from './router.config';
 
 Vue.use(Vuex);
 
@@ -60,6 +61,7 @@ const store = {
                 dispatch('setLoggedIn',true);
             }else{
                 dispatch('logout');
+                Router.push({name: 'login'});
             }
 
             commit('setLoading',false);

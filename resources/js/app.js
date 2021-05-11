@@ -4,7 +4,10 @@ import Board from "./Board";
 import apolloProvider from './apollo.config';
 import router from './router.config';
 import store from './vuex.config';
-import feather from 'vue-icon'
+import feather from 'vue-icon';
+import Sortable from 'vue-sortable'
+
+Vue.use(Sortable);
 
 //Optional component
 import Notifications from 'vue-notification'
