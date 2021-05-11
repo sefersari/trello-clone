@@ -55,11 +55,16 @@ export default {
     methods: {
         async logout() {
             this.$store.commit('setLoading', true);
-            const response = await this.$apollo.mutate({
-                mutation: Logout
-            });
-            if (response.data?.logout?.id) {
-                this.$store.dispatch('logout');
+            try{
+                const response = await this.$apollo.mutate({
+                    mutation: Logout
+                });
+                if (response.data?.logout?.id) {
+                    this.$store.dispatch('logout');
+                    this.$store.commit('setLoading', false);
+                    this.$router.push({name: 'login'});
+                }
+            }catch (err){
                 this.$store.commit('setLoading', false);
                 this.$router.push({name: 'login'});
             }

@@ -28,7 +28,7 @@ const routes = [
         path: "/register",
         name: 'register',
         component: Register
-    }
+    },
 ];
 
 export default new VueRouter({

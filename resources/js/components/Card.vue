@@ -7,13 +7,15 @@
                 <div class="text-gray-500 pr-2 hover:text-yellow-700" @click="editing = true" >
                     <v-icon name="edit"></v-icon>
                 </div>
-                <div class="text-gray-500 hover:text-red-700" @click="cardDelete"><v-icon name="x"></v-icon></div>
+                <div class="text-gray-500 hover:text-red-700" @click="isConfirm = true"><v-icon name="x"></v-icon></div>
             </div>
 
         </div>
 
         <CardEditor v-else v-model="title" class="mb-2" label="Save Card" @closed="editing=false"
                     @saved="cardUpdate"></CardEditor>
+
+        <Confirm :show="isConfirm" @closed="isConfirm = false" @confirmDialogResult="cardDelete" :title="'Emin misiniz?'"></Confirm>
     </div>
 </template>
 
@@ -26,6 +28,8 @@ import CardEditor from "./CardEditor";
 
 import {mapState} from 'vuex';
 
+import Confirm from "./Confirm";
+
 export default {
     name: "Card",
     props: {
@@ -35,9 +39,10 @@ export default {
         return {
             editing: false,
             title: this.card.title,
+            isConfirm: false
         }
     },
-    components: {CardEditor},
+    components: {CardEditor,Confirm},
     computed: mapState({
         userId: state => state.user.id,
     }),

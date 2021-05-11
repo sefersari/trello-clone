@@ -42,7 +42,7 @@ export const colorMap500 = {
     green: "bg-green-500",
     blue: "bg-blue-500",
     indigo: "bg-indigo-500",
-    fix: 'bg-purple-800'
+    fix: 'bg-indigo-900'
 };
 
 export const colorMap100 = {

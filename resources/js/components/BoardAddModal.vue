@@ -10,6 +10,7 @@
                 <div class="rounded-sm p-4 text-black w-full mr-2" :class="[colors[color]]">
                     <input
                         v-model="title"
+                        ref="elementFocus"
                         type="text" placeholder="Add board title"
                         class="title rounded-sm text-white outline-none py-1 px-2 w-full hover:opacity-50 placeholder-white">
                 </div>

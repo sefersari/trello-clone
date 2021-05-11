@@ -5,8 +5,8 @@
                 {{ list.title }}
             </div>
 
-            <div @click="deleteList(list.id)">
-                <v-icon class="cursor-pointer" name="x" style="height: 20px"></v-icon>
+            <div @click="isDelete = true">
+                <v-icon class="cursor-pointer bg" name="x" style="height: 20px"></v-icon>
             </div>
 
 
@@ -25,6 +25,8 @@
             @added="$emit('card-added',{...$event, listId: list.id})"
         ></CardAddEditor>
         <card-add-button  v-if="!editing && canAddCard" @click="editing=true"></card-add-button>
+
+        <Confirm :show="isDelete" @closed="isDelete = false" @confirmDialogResult="deleteList(list.id)" :title="'Silmek istediğinize emin misiniz?'"></Confirm>
     </div>
 </template>
 
@@ -35,12 +37,14 @@ import CardAddEditor from "./CardAddEditor";
 import {mapState} from 'vuex';
 import ListDelete from '../graphql/ListDelete.graphql';
 import {EVENT_LIST_DELETED} from "../constants";
+import Confirm from "./Confirm";
 
 export default {
     components: {
         Card,
         CardAddButton,
-        CardAddEditor
+        CardAddEditor,
+        Confirm
     },
     computed: mapState({
         canAddCard(state){
@@ -52,7 +56,8 @@ export default {
     },
     data() {
         return {
-            editing: false
+            editing: false,
+            isDelete: false
         }
     },
     methods:{
